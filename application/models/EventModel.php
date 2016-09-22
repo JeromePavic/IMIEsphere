@@ -22,13 +22,14 @@ class EventModel {
         $query=$db->prepare('INSERT INTO event (event_name, event_description, event_start, event_end, id_address) VALUES (:event_name, :event_description, :event_start, :event_end, :id_address)');
         $query->execute(array('event_name'=>$event_name, 'event_description'=>$event_description, 'event_start'=>$event_start, 'event_end'=> $event_end, 'id_address'=>$id_address));
 
-        $query = $db->query('SELECT id_event FROM event WHERE event.event_name LIKE \''.$event_name.'\' AND DATE(event.event_start) = \''.$event_start.'\' AND event.id_address = '.$id_address.' ORDER BY event.event_start DESC LIMIT 1');
+        $query = $db->query('SELECT id_event FROM event ORDER BY event.id_event DESC LIMIT 1');
         $event = $query->fetch();
         $id_event = $event[0];
 
         $query=$db->prepare('INSERT INTO event_type_event (id_event, id_type_event) VALUES (:id_event, :id_type_event)');
         $query->execute(array('id_event'=>$id_event, 'id_type_event'=>$id_type_event));
 
+        return $id_event;
     }
 }
 
