@@ -3,6 +3,9 @@
 
 class SessionController{
 
+	
+
+	
 
     //this function checks if a session is set or not
     public function checkSession(){
@@ -107,9 +110,48 @@ class SessionController{
     }
 
     
-    public function userProfile($id_user){   
 
+    
+    public function authorization ($action, $role){
+    	if ($action == 'eventAddAsk' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'eventAdd' && $role == 1){
+    		return 1;
+    	}if ($action == 'typeEventAddAsk' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'typeEventAdd' && $role == 1){
+    		return 1;
+    	}
+    	if ($action == 'gradeAddAsk' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'gradeAdd' && $role == 1){
+    		return 1;
+    	}
+    	if ($action == 'cityAddAsk' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'cityAdd' && $role == 1){
+    		return 1;
+    	}
+    	if ($action == 'addressAddAsk' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'addressAdd' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'calendar' && $role <=3){
+    		return 1;
+    	}
+    	else{
+    		return 0;
+    	}
     }
+    
+    
+    
 }
 
 

@@ -1,5 +1,14 @@
 
 
+$(function(){
+
+    $('#btnMenu').on('click touch', function(e){
+        $('#nav').slideToggle();
+    });
+});
+
+
+
 //datepicker and timepicker
 
 

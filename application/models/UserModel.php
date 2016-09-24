@@ -12,9 +12,10 @@ class UserModel {
     public function checkUser($email) {
         require_once('application/models/DbConnection.php');
         $db = Db::getInstance();
-        /*$query = $db->query('SELECT id_user FROM user WHERE user.email LIKE \''.$email.'\'');
-        var_dump($query);*/
-        if($db->query('SELECT id_user FROM user WHERE user.email LIKE \''.$email.'\'')){
+        
+        $query = $db->query('SELECT id_user FROM user WHERE user.email LIKE \''.$email.'\'');
+        $query = $query->fetch();
+        if($query){
             return 1;
         }
         else{
