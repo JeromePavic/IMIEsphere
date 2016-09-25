@@ -11,8 +11,7 @@ $(function(){
     $('#modif').change(function() {
         $(this).parents('form').submit();
     });
-	
-	
+
 	//datepicker and timepicker
 
     $( "#start .date" ).datepicker(
@@ -46,5 +45,9 @@ $(function(){
     });
     
     
+//    	if (("#availability").data == 0) {
+//    		$('#register').prop("disabled",true);
+//    	}
+
 });
 

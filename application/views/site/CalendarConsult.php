@@ -11,7 +11,7 @@
                    
                         <article class="article">
                             <header>
-                                <h2><?php echo $event['event_name'] ?></h2>
+	                            <h2><a href="index.php?action=eventShow&id_event=<?php echo $event['id_event']; ?>" id="link" ><?php echo $event['event_name']; ?></a></h2>
                                 <p class="article-info"><?php echo $event['event_start'] ?></p>
                             </header>
                             <section><?php echo $event['event_description'] ?></section>

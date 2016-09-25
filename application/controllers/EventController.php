@@ -15,6 +15,39 @@ class EventController{
 		}
 	}
 	
+	public function eventShow($id_event, $currentRole, $currentDate) {
+		
+		require_once('application/models/EventModel.php');
+		$eventModel = new EventModel();
+		$event = $eventModel->getEvent($id_event);
+		
+		require_once('application/models/RegistrationModel.php');
+		$registrationModel = new RegistrationModel();
+		$registration = $registrationModel->getRegistrationMore($id_event, $currentRole);
+		var_dump($registration);
+		if ($registration == false){
+			$registration = $registrationModel->getRegistrationLess($id_event, $currentRole);
+			$registration['price']=0;
+		}
+		var_dump($registration);
+
+		
+		require_once('application/models/UserRegistrationModel.php');
+		$userRegistrationModel = new UserRegistrationModel();
+		$userRegistration = $userRegistrationModel->getNbUserRegistration($registration['id_registration']);
+		
+		$availability = $registration['max_place'] - $userRegistration[0];
+		
+		
+		if (empty($event) && empty($registration) && empty($userRegistration)) {
+			echo "problème de connexion à la base";
+		} else {
+			require_once('application/views/site/EventDetails.php');
+		}
+	}
+	
+	
+	
 	//this function gets the 'new event' formular
 	public function eventAddAsk($currentRole, $currentDate, $message) {
 	

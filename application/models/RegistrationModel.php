@@ -16,6 +16,36 @@ class RegistrationModel {
 		return $id_registration;
 	}
 	
+	public function getRegistrationLess ($id_event, $id_role){
+	
+		require_once('application/models/DbConnection.php');
+		$db = Db::getInstance();
+		$query = $db->query('SELECT registration.id_registration, registration.max_place, registration.registration_start, registration.registration_end, registration.pre_registration FROM registration
+						        WHERE registration.id_event = '.$id_event.'');
+		$registration = $query->fetch();
+		return $registration;
+	}
+	
+	public function getRegistrationMore ($id_event, $id_role){
+		
+		require_once('application/models/DbConnection.php');
+		$db = Db::getInstance();
+		$query = $db->query('SELECT registration.id_registration, registration.max_place, registration.registration_start, registration.registration_end, registration.pre_registration, payment.price  FROM registration
+						        INNER JOIN cost ON registration.id_registration = cost.id_registration
+						        INNER JOIN payment ON cost.id_payment = payment.id_payment
+						        WHERE registration.id_event = '.$id_event.' AND cost.id_role = '.$id_role.'');
+		$registration = $query->fetch();
+		return $registration;
+	}
+	
+	public function getPlacesRegistration ($id_registration){
+		require_once('application/models/DbConnection.php');
+		$db = Db::getInstance();
+		$query = $db->query('SELECT max_place  FROM registration WHERE registration.id_registration = '.$id_registration.'');
+		$registration = $query->fetch();
+		return $registration;
+	}
+	
 }
 
 ?>

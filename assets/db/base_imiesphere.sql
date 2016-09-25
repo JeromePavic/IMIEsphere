@@ -312,8 +312,8 @@ INSERT INTO cost VALUES
 CREATE TABLE user_registration(
         id_user                Int NOT NULL ,
         id_registration        Int NOT NULL ,
-        unsubscribe            Bool NOT NULL ,
-        date_time_registration Datetime NOT NULL ,
+        unsubscribe            Bool,
+        date_time_registration Datetime,
         PRIMARY KEY (id_user ,id_registration )
 )ENGINE=InnoDB;
 
@@ -402,7 +402,10 @@ WHERE type_event.type_event_name LIKE '%bar%';
 -- Sélectionner le CA pour un événement.
 
 
-
+SELECT registration.id_registration, registration.max_place, registration.registration_start, registration.registration_end, registration.pre_registration, payment.price  FROM registration
+        INNER JOIN cost ON registration.id_registration = cost.id_registration
+        INNER JOIN payment ON cost.id_payment = payment.id_payment
+        WHERE registration.id_registration = 2 AND cost.id_role = 2;
 
 
 -- Ajouter un nouvel événement.

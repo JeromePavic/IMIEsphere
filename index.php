@@ -159,6 +159,56 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 }
 
 
+
+
+//------------------------------------------------------------------------
+
+
+
+//consulting an event
+else if (!empty($_GET['action']) && $_GET['action']=='eventShow') {
+
+	if ($sessionController->authorization ('eventShow', $currentRole)){
+		//if required fiels are ok, ...
+		if (!empty($_GET['id_event'])) {
+
+			require_once('application/controllers/EventController.php');
+			$eventController = new EventController();
+			$id_event = $eventController->eventShow(intval(htmlspecialchars($_GET['id_event'])), $currentRole, $currentDate);
+		}
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+}
+
+
+
+
+//------------------------------------------------------------------------
+
+
+
+//registering to an event
+else if (!empty($_GET['action']) && $_GET['action']=='userRegistration') {
+
+	if ($sessionController->authorization ('eventRegistration', $currentRole)){
+		//if required fiels are ok, ...
+		if (!empty($_POST['id_registration'])) {
+			
+			require_once('application/controllers/UserRegistrationController.php');
+			$userRegistrationController = new UserRegistrationController();
+			$userRegistrationController->register(intval(htmlspecialchars($_POST['id_registration'])), intval(htmlspecialchars($_SESSION['id_user'])), $currentRole, $currentDate);
+		}
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+}
+
+
+
+
 //------------------------------------------------------------------------
 
 
