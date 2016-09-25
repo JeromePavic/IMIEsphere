@@ -6,7 +6,13 @@ class CityController{
 
 
 	//this function gets the 'new city' formular
-	public function cityAddAsk($currentRole, $currentDate, $message) {
+	public function cityAddAsk($currentRole, $currentDate, $id_city, $message) {
+		
+		require_once('application/models/CityModel.php');
+		$cityModel = new CityModel();
+		$allCities = $cityModel->getAllCities();
+		
+		$currentCity = $cityModel->getCity($id_city);
 
 		require_once('application/views/site/CityAddForm.php');
 	}
@@ -20,11 +26,21 @@ class CityController{
 		}
 		else{
 			$cityModel->cityAdd($city_name, $postal_code);
+			
+			header('location: index.php?action=calendar');
 		}
 
 	}
 
-
+	public function cityMod($id_city, $city_name, $postal_code, $currentRole, $currentDate){
+	
+		require_once('application/models/CityModel.php');
+		$cityModel = new CityModel();
+		$cityModel->cityMod($id_city, $city_name, $postal_code);
+				
+		header('location: index.php?action=calendar');
+		
+	}
 
 }
 

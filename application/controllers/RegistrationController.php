@@ -20,5 +20,7 @@ class RegistrationController {
 		$costModel->costAdd($id_registration, $id_p_Ad, 2);
 		$costModel->costAdd($id_registration, $id_p_Mb, 1);
 		
+		header('location: index.php?action=calendar');
+		
 	}
 }

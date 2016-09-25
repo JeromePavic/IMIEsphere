@@ -13,6 +13,15 @@ class EventModel {
         $events = $query->fetchAll();
         return $events;
     }
+    
+    public function getEvent($id_event) {
+    	require_once('application/models/DbConnection.php');
+    	$db = Db::getInstance();
+    	$query = $db->query('SELECT * FROM event
+                                WHERE event.id_event  '.$id_event.'');
+    	$event = $query->fetch();
+    	return $event;
+    }
 
 
     public function eventAdd($event_name, $event_description, $event_start, $event_end, $id_address, $id_type_event){

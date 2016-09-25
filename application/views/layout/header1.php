@@ -54,12 +54,12 @@
                             <li class="dropdown">
                               <a class="dropdown-toggle" id ="btnMenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                               <ul class="dropdown-menu">
-                              <li><a href="index.php?action=typeEventAddAsk">Ajouter un type d'événement</a></li>
+                              <li><a href="index.php?action=typeEventAddAsk">Ajouter/Modifier un type d'événement</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="index.php?action=gradeAddAsk">Ajouter une promotion d'étudiants</a></li>
+                                <li><a href="index.php?action=gradeAddAsk">Ajouter/Modifier une promotion d'étudiants</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="index.php?action=cityAddAsk">Ajouter une ville</a></li>
-                                <li><a href="index.php?action=addressAddAsk">Ajouter une adresse</a></li>
+                                <li><a href="index.php?action=cityAddAsk">Ajouter/Modifier une ville</a></li>
+                                <li><a href="index.php?action=addressAddAsk">Ajouter/Modifier une adresse</a></li>
                               </ul>
                             </li>
                           </ul>

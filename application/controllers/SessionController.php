@@ -69,8 +69,6 @@ class SessionController{
                     $_SESSION['lastname'] = $user['lastname'];
                     $_SESSION['id_role'] = $user['id_role'];
 
-                    echo 'wazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-
                     header('location: index.php?action=calendar');
                     
                     $flag = 1;
@@ -124,10 +122,16 @@ class SessionController{
     	else if ($action == 'typeEventAdd' && $role == 1){
     		return 1;
     	}
+    	else if ($action == 'typeEventMod' && $role == 1){
+    		return 1;
+    	}
     	if ($action == 'gradeAddAsk' && $role == 1){
     		return 1;
     	}
     	else if ($action == 'gradeAdd' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'gradeMod' && $role == 1){
     		return 1;
     	}
     	if ($action == 'cityAddAsk' && $role == 1){
@@ -136,10 +140,16 @@ class SessionController{
     	else if ($action == 'cityAdd' && $role == 1){
     		return 1;
     	}
+    	else if ($action == 'cityMod' && $role == 1){
+    		return 1;
+    	}
     	if ($action == 'addressAddAsk' && $role == 1){
     		return 1;
     	}
     	else if ($action == 'addressAdd' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'addressMod' && $role == 1){
     		return 1;
     	}
     	else if ($action == 'calendar' && $role <=3){

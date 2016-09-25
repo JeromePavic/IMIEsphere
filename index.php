@@ -164,11 +164,18 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 
 //asking for adding a new type of event
 else if (!empty($_GET['action']) && $_GET['action']=='typeEventAddAsk') {
+
+	if (!empty($_POST['id_type_event'])){
+		$id_type_event = intval($_POST['id_type_event']);
+	}
+	else{
+		$id_type_event = 0;
+	}
 	
 	if ($sessionController->authorization ('typeEventAddAsk', $currentRole)){
 		require_once('application/controllers/TypeEventController.php');
 		$typeEventController = new TypeEventController();
-		$typeEventController->typeEventAddAsk($currentRole, $currentDate, '');
+		$typeEventController->typeEventAddAsk($currentRole, $currentDate, $id_type_event, '');
 	}
 	else{
 		echo 'Vous vous êtes perdu?';
@@ -190,7 +197,32 @@ else if (!empty($_GET['action']) && $_GET['action']=='typeEventAdd') {
 		else{
 			require_once('application/controllers/TypeEventController.php');
 			$typeEventController = new TypeEventController();
-			$typeEventController->typeEventAddAsk($currentRole, $currentDate, 'Vous n\'avez pas rempli correctement le formulaire');
+			$typeEventController->typeEventAddAsk($currentRole, $currentDate, $id_type_event, 'Vous n\'avez pas rempli correctement le formulaire');
+		}
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+}
+
+
+
+//modifying a type of event
+else if (!empty($_GET['action']) && $_GET['action']=='typeEventMod') {
+
+	if ($sessionController->authorization ('typeEventMod', $currentRole)){
+
+		//if required fiels are ok, we add the new user
+		if (!empty($_POST['type_event_name']) && ($_POST['id_type_event'])) {
+			require_once('application/controllers/TypeEventController.php');
+			$typeEventController = new TypeEventController();
+			$typeEventController->typeEventMod(intval(htmlspecialchars($_POST['id_type_event'])), htmlspecialchars($_POST['type_event_name']), htmlspecialchars($_POST['type_event_description']), $currentRole, $currentDate);
+		}
+		//else we redirect the new user to the event type page with a message
+		else{
+			require_once('application/controllers/TypeEventController.php');
+			$typeEventController = new TypeEventController();
+			$typeEventController->typeEventAddAsk($currentRole, $currentDate, 0, 'Vous n\'avez pas rempli correctement le formulaire');
 		}
 	}
 	else{
@@ -207,10 +239,17 @@ else if (!empty($_GET['action']) && $_GET['action']=='typeEventAdd') {
 //asking for adding a new grade
 else if (!empty($_GET['action']) && $_GET['action']=='gradeAddAsk') {
 
+	if (!empty($_POST['id_grade'])){
+		$id_grade = intval($_POST['id_grade']);
+	}
+	else{
+		$id_grade = 0;
+	}
+
 	if ($sessionController->authorization ('gradeAddAsk', $currentRole)){
 		require_once('application/controllers/GradeController.php');
 		$gradeController = new GradeController();
-		$gradeController->gradeAddAsk($currentRole, $currentDate, '');
+		$gradeController->gradeAddAsk($currentRole, $currentDate, $id_grade, '');
 	}
 	else{
 		echo 'Vous vous êtes perdu?';
@@ -219,6 +258,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeAddAsk') {
 
 //adding a new grade
 else if (!empty($_GET['action']) && $_GET['action']=='gradeAdd') {
+
 
 	if ($sessionController->authorization ('gradeAdd', $currentRole)){
 		//if required fiels are ok, we add the new user
@@ -231,7 +271,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeAdd') {
 		else{
 			require_once('application/controllers/GradeController.php');
 			$gradeController = new GradeController();
-			$gradeController->gradeAddAsk($currentRole, $currentDate, 'Vous n\'avez pas rempli correctement le formulaire');
+			$gradeController->gradeAddAsk($currentRole, $currentDate, $id_grade, 'Vous n\'avez pas rempli correctement le formulaire');
 		}
 	}
 	else{
@@ -242,6 +282,31 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeAdd') {
 
 
 
+
+//modifying a grade
+else if (!empty($_GET['action']) && $_GET['action']=='gradeMod') {
+
+
+	if ($sessionController->authorization ('gradeMod', $currentRole)){
+		//if required fiels are ok, we add the new user
+		if (!empty($_POST['grade_name']) && !empty($_POST['promotion']) && ($_POST['id_grade'])) {
+			require_once('application/controllers/GradeController.php');
+			$gradeController = new GradeController();
+			$gradeController->gradeMod(intval(htmlspecialchars($_POST['id_grade'])), htmlspecialchars($_POST['grade_name']), htmlspecialchars($_POST['promotion']), $currentRole, $currentDate);
+		}
+		//else we redirect the user to the grade page with a message
+		else{
+			require_once('application/controllers/GradeController.php');
+			$gradeController = new GradeController();
+			$gradeController->gradeAddAsk($currentRole, $currentDate, 0, 'Vous n\'avez pas rempli correctement le formulaire');
+		}
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+}
+
+
 //------------------------------------------------------------------------
 
 
@@ -249,11 +314,17 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeAdd') {
 
 //asking for adding a new city
 else if (!empty($_GET['action']) && $_GET['action']=='cityAddAsk') {
-
+	
+	if (!empty($_POST['id_city'])){
+		$id_city = intval($_POST['id_city']);
+	}
+	else{
+		$id_city = 0;
+	}
 	if ($sessionController->authorization ('cityAddAsk', $currentRole)){
 		require_once('application/controllers/CityController.php');
 		$cityController = new CityController();
-		$cityController->cityAddAsk($currentRole, $currentDate, '');
+		$cityController->cityAddAsk($currentRole, $currentDate, $id_city, '');
 	}
 	else{
 		echo 'Vous vous êtes perdu?';
@@ -274,7 +345,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='cityAdd') {
 		else{
 			require_once('application/controllers/CityController.php');
 			$cityController = new CityController();
-			$cityController->cityAddAsk($currentRole, $currentDate, 'Vous n\'avez pas rempli correctement le formulaire');
+			$cityController->cityAddAsk($currentRole, $currentDate, $id_city, 'Vous n\'avez pas rempli correctement le formulaire');
 		}
 	}
 	else{
@@ -282,6 +353,30 @@ else if (!empty($_GET['action']) && $_GET['action']=='cityAdd') {
 	}
 }
 
+
+
+
+//modifying a city
+else if (!empty($_GET['action']) && $_GET['action']=='cityMod') {
+
+	if ($sessionController->authorization ('cityMod', $currentRole)){
+		//if required fiels are ok, we add the new city
+		if (!empty($_POST['city_name']) && !empty($_POST['postal_code']) && ($_POST['id_city'])) {
+			require_once('application/controllers/CityController.php');
+			$cityController = new CityController();
+			$cityController->cityMod(intval(htmlspecialchars($_POST['id_city'])), htmlspecialchars($_POST['city_name']), htmlspecialchars($_POST['postal_code']), $currentRole, $currentDate);
+		}
+		//else we redirect the user to the city page with a message
+		else{
+			require_once('application/controllers/CityController.php');
+			$cityController = new CityController();
+			$cityController->cityAddAsk($currentRole, $currentDate, 0, 'Vous n\'avez pas rempli correctement le formulaire');
+		}
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+}
 
 
 
@@ -293,11 +388,17 @@ else if (!empty($_GET['action']) && $_GET['action']=='cityAdd') {
 
 //asking for adding a new address
 else if (!empty($_GET['action']) && $_GET['action']=='addressAddAsk') {
-
+	
+	if (!empty($_POST['id_address'])){
+		$id_address = intval($_POST['id_address']);
+	}
+	else{
+		$id_address = 0;
+	}
 	if ($sessionController->authorization ('addressAddAsk', $currentRole)){
 		require_once('application/controllers/AddressController.php');
 		$addressController = new AddressController();
-		$addressController->addressAddAsk($currentRole, $currentDate, '');
+		$addressController->addressAddAsk($currentRole, $currentDate, $id_address, '');
 	}
 	else{
 		echo 'Vous vous êtes perdu?';
@@ -318,7 +419,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='addressAdd') {
 		else{
 			require_once('application/controllers/AddressController.php');
 			$addressController = new AddressController();
-			$addressController->addressAddAsk($currentRole, $currentDate, 'Vous n\'avez pas rempli correctement le formulaire');
+			$addressController->addressAddAsk($currentRole, $currentDate, $id_address, 'Vous n\'avez pas rempli correctement le formulaire');
 		}
 	}
 	else{
@@ -327,6 +428,30 @@ else if (!empty($_GET['action']) && $_GET['action']=='addressAdd') {
 }
 
 
+
+
+
+//modifying an address
+else if (!empty($_GET['action']) && $_GET['action']=='addressMod') {
+
+	if ($sessionController->authorization ('addressMod', $currentRole)){
+		//if required fiels are ok, we add the new address
+		if (!empty($_POST['address_name']) && ($_POST['id_address'])) {
+			require_once('application/controllers/AddressController.php');
+			$addressController = new AddressController();
+			$addressController->addressMod(intval(htmlspecialchars($_POST['id_address'])), htmlspecialchars($_POST['address_name']), htmlspecialchars($_POST['street']), htmlspecialchars($_POST['street_number']), htmlspecialchars($_POST['building']), htmlspecialchars($_POST['id_city']), $currentRole, $currentDate);
+		}
+		//else we redirect the new user to the address page with a message
+		else{
+			require_once('application/controllers/AddressController.php');
+			$addressController = new AddressController();
+			$addressController->addressAddAsk($currentRole, $currentDate, 0, 'Vous n\'avez pas rempli correctement le formulaire');
+		}
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+}
 
 
 
