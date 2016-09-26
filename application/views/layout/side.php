@@ -1,5 +1,5 @@
                 <div class="col-sm-4">
-                    <aside>
+                    <aside class="bloc">
 
                         <div class="post-recents">
                             <h3><?php echo $_COOKIE['userInfos']['firstname'].' '.$_COOKIE['userInfos']['firstname']; ?></h3>
