@@ -24,12 +24,11 @@ class EventController{
 		require_once('application/models/RegistrationModel.php');
 		$registrationModel = new RegistrationModel();
 		$registration = $registrationModel->getRegistrationMore($id_event, $currentRole);
-		var_dump($registration);
+
 		if ($registration == false){
 			$registration = $registrationModel->getRegistrationLess($id_event, $currentRole);
 			$registration['price']=0;
 		}
-		var_dump($registration);
 
 		
 		require_once('application/models/UserRegistrationModel.php');

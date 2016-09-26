@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="article">Description du type d'événement :</label>
-                            <textarea class="form-control" rows="3" name="type_event_description" id="type_event_description" value=<?php echo '"'.$currentTypeEvent['type_event_description'].'"'; ?>><?php echo $currentTypeEvent['type_event_description']; ?></textarea>
+                            <textarea class="form-control" rows="3" name="type_event_description" id="type_event_description"><?php echo $currentTypeEvent['type_event_description']; ?></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-default">valider</button>

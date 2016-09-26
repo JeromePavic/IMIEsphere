@@ -6,7 +6,7 @@ class RegistrationController {
 		
 		require_once('application/models/RegistrationModel.php');
 		$registrationModel = new RegistrationModel();
-		$id_registration = $registrationModel->registrationAdd($max_place, $registration_start, $registration_end, $pre_registration, $id_event);
+		$id_registration = $registrationModel->registrationAdd(intval($max_place), $registration_start, $registration_end, $pre_registration, intval($id_event));
 		
 		require_once('application/models/PaymentModel.php');
 		$paymentModel = new PaymentModel();

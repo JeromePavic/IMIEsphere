@@ -31,4 +31,13 @@ class UserController {
 		}
 	}
 	
+	public function getUser($id_user){
+		
+		require_once('application/models/UserModel.php');
+		$userModel = new UserModel();
+		$userInfos = $userModel->getUser($id_user);
+
+		return $userInfos;
+	}
+	
 }

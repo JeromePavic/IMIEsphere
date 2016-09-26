@@ -12,6 +12,12 @@ class DateController {
 	
 	public function rightDate($date1, $date2, $time1, $time2) {
 	
+		if($time1!='%%:%%'){
+			$time1='00:00';
+		}
+		if($time2!='%%:%%'){
+			$time2='00:00';
+		}
 		
 		$date1 = str_replace('/', '-', $date1);
 		$date2 = str_replace('/', '-', $date2);
@@ -41,6 +47,10 @@ class DateController {
 	}
 	
 	public function dateConvert($date, $time){
+		
+		if($time!='%%:%%'){
+			$time='00:00';
+		}
 	
 		$date = str_replace('/', '-', $date);
 		$timestamp = strtotime($date);

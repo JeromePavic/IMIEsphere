@@ -29,4 +29,15 @@ class UserModel {
         $req=$db->prepare('INSERT INTO user (firstname, lastname, email, phone, password, id_grade) VALUES (:firstname, :lastname, :email, :phone, :password, :id_grade )');
         $req->execute(array('firstname'=>$firstname, 'lastname'=>$lastname, 'email'=>$email, 'phone'=> $phone, 'password'=>$password, 'id_grade'=>$id_grade));
     }
+    
+    public function getUser($id_user){
+    	require_once('application/models/DbConnection.php');
+    	$db = Db::getInstance();
+    	
+    	$query = $db->query('SELECT user.id_user, user.firstname, user.lastname, user.email, user.phone, grade.grade_name, grade.promotion FROM user 
+    							INNER JOIN grade ON user.id_grade = grade.id_grade WHERE user.id_user ='.$id_user.'');
+    	$query = $query->fetch();
+    	
+    	return $query;
+    }
 }

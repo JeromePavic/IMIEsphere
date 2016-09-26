@@ -3,7 +3,9 @@
 #------------------------------------------------------------
 
 DROP DATABASE IF EXISTS imiesphere_dev;
-CREATE DATABASE imiesphere_dev;
+CREATE DATABASE imiesphere_dev
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci;
 USE imiesphere_dev;
 
 
@@ -70,6 +72,7 @@ CREATE TABLE user(
 #------------------------------------------------------------
 
 INSERT INTO user VALUES 
+(13,NULL,'jeje','jeje','admin@imie.com','0658631306','123',1,1),
 (1,NULL,'dereck','daniel','daniel.dereck@gmail.com','0658631306','bonjoir',1,3),
 (2,NULL,'delphine','bourdelle','delphine.bourdelle@hotmail.fr','0625586726','bonjoir',1,3),
 (3,NULL,'emeline','hourmand','shiro-x3@hotmail.fr','0619601483','bonjoir',1,3),
@@ -228,7 +231,7 @@ CREATE TABLE registration(
         max_place          Int ,
         registration_start Datetime NOT NULL ,
         registration_end   Datetime ,
-        pre_registration   Bool NOT NULL ,
+        pre_registration   Datetime ,
         id_event           Int NOT NULL ,
         PRIMARY KEY (id_registration )
 )ENGINE=InnoDB;
@@ -238,16 +241,16 @@ CREATE TABLE registration(
 #------------------------------------------------------------
 
 INSERT INTO registration VALUES
-(1,100,'2016-08-31 10:30:00','2016-09-05 10:30:00',true,1),
-(2,10,'2016-08-31 10:30:00','2016-09-05 10:30:00',false,2),
-(3,50,'2016-08-31 10:30:00','2016-09-05 10:30:00',true,3),
-(4,350,'2016-08-31 10:30:00','2016-09-05 10:30:00',true,4),
-(5,150,'2016-08-31 10:30:00','2016-09-05 10:30:00',true,5),
-(6,100,'2016-08-31 10:30:00','2016-09-05 10:30:00',true,6),
-(7,100,'2016-08-31 10:30:00','2016-09-05 10:30:00',false,7),
-(8,100,'2016-08-31 10:30:00','2016-09-05 10:30:00',false,8),
-(9,100,'2016-08-31 10:30:00','2016-09-05 10:30:00',false,9),
-(10,100,'2016-08-31 10:30:00','2016-09-05 10:30:00',false,10)
+(1,100,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',1),
+(2,10,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',2),
+(3,50,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',3),
+(4,350,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',4),
+(5,150,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',5),
+(6,100,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',6),
+(7,100,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',7),
+(8,100,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',8),
+(9,100,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',9),
+(10,100,'2016-08-31 10:30:00','2016-09-05 10:30:00','2016-08-31 10:30:00',10)
 ;
 
 
@@ -422,5 +425,5 @@ SELECT registration.id_registration, registration.max_place, registration.regist
 -- Associer un prix à un événement.
 
 
-
+INSERT INTO registration (max_place, registration_start, registration_end, pre_registration, id_event) VALUES (:max_place, :registration_start, :registration_end, :pre_registration, :id_event)
 

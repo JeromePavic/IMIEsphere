@@ -9,15 +9,22 @@ $sessionOn = $sessionController->checkSession();
 $currentDate = $sessionController->setDate();
 $currentRole = $sessionController->checkRole();
 
+if ($currentRole < 3) {
+	require_once('application/controllers/UserController.php');
+	$userController = new UserController();
+	$_COOKIE['userInfos'] = $userController->getUser(intval(htmlspecialchars($_SESSION['id_user'])));
+	
+	require_once('application/controllers/UserRegistrationController.php');
+	$userRegistrationController = new UserRegistrationController();
+	$_COOKIE['userEvents'] = $userRegistrationController->getUserRegistration(intval(htmlspecialchars($_SESSION['id_user'])));
+	
 
+}
 
 //------------------------------------------------------------------------
 //then we check wich action is riquired...
 //...and if the type of user (currentRole) is authorised to get the page
 //------------------------------------------------------------------------
-
-
-
 
 
 //consulting the calendar.
@@ -68,8 +75,8 @@ else if (!empty($_GET['action']) && $_GET['action'] == 'connection'){
 //asking for registration (adding a user)
 else if (!empty($_GET['action']) && $_GET['action']=='userAddAsk') {
     require_once('application/controllers/UserController.php');
-        $userController = new UserController();
-        $userController->userAddAsk($currentRole, $currentDate, '');
+    $userController = new UserController();
+    $userController->userAddAsk($currentRole, $currentDate, '');
 }
 
 //adding a new user

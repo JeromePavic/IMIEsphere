@@ -24,7 +24,7 @@
                         
                         <form id="userRegistration" action="index.php?action=userRegistration" method="POST">
                             <input type="hidden" name="id_registration" value="<?php echo $registration['id_registration']; ?>" />
-                        	<button type="submit" class="btn btn-default" id="register">Je m'inscris!<?php echo $registration['id_registration']; ?></button>
+                        	<button type="submit" class="btn btn-default" id="register">Je m'inscris!</button>
                     	</form>
 
                 </div>
