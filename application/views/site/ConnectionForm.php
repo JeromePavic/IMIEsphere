@@ -11,7 +11,7 @@
 
                     <form id="connection" action="index.php?action=connection" method="POST">
                         <div>
-                            <label for="article">Login :</label>
+                            <label for="article">Email :</label>
                             <input type="text" name="email">
                         </div>
                         <div>
@@ -22,7 +22,7 @@
 
                     </form>
 
-                    <a href="index.php?action=userAddAsk">Nouvel utilisateur? Inscrivez-vous...</a>
+                    <a href="index.php?action=userAddAsk">Nouvel utilisateur ? Inscrivez-vous...</a>
 
                 </div>
                 

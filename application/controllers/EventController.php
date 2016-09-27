@@ -8,11 +8,7 @@ class EventController{
 		$eventModel = new EventModel();
 		$allEvents = $eventModel->getAllEvents($currentDate);
 		
-		if (empty($allEvents)) {
-			echo "problème de connexion à la base";
-		} else {
-			require_once('application/views/site/Calendarconsult.php');
-		}
+		require_once('application/views/site/Calendarconsult.php');
 	}
 	
 	public function eventShow($id_event, $currentRole, $currentDate) {

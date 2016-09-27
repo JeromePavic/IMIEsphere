@@ -23,11 +23,11 @@ class UserModel {
         }
     }
 
-    public function userAdd($firstname, $lastname, $email, $phone, $password, $id_grade) {
+    public function userAdd($firstname, $lastname, $email, $phone, $password, $id_grade, $id_role) {
         require_once('application/models/DbConnection.php');
         $db = Db::getInstance();
-        $req=$db->prepare('INSERT INTO user (firstname, lastname, email, phone, password, id_grade) VALUES (:firstname, :lastname, :email, :phone, :password, :id_grade )');
-        $req->execute(array('firstname'=>$firstname, 'lastname'=>$lastname, 'email'=>$email, 'phone'=> $phone, 'password'=>$password, 'id_grade'=>$id_grade));
+        $req=$db->prepare('INSERT INTO user (firstname, lastname, email, phone, password, id_grade, id_role) VALUES (:firstname, :lastname, :email, :phone, :password, :id_grade, :id_role )');
+        $req->execute(array('firstname'=>$firstname, 'lastname'=>$lastname, 'email'=>$email, 'phone'=> $phone, 'password'=>$password, 'id_grade'=>$id_grade, 'id_role'=>$id_role));
     }
     
     public function getUser($id_user){

@@ -25,7 +25,7 @@ class UserController {
 			//header('application/index.php?action=userAddAsk');
 		}
 		else{
-			$userModel->userAdd($firstname, $lastname, $email, $phone, $password, $id_grade);
+			$userModel->userAdd($firstname, $lastname, $email, $phone, $password, $id_grade, 3);
 			
 			header('location: index.php?action=calendar');
 		}
