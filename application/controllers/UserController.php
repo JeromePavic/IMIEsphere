@@ -27,8 +27,36 @@ class UserController {
 		else{
 			$userModel->userAdd($firstname, $lastname, $email, $phone, $password, $id_grade, 3);
 			
-			header('location: index.php?action=calendar');
+			require_once('application/controllers/SessionController.php');
+        	$sessionController = new SessionController();
+        	$sessionController->connectionAsk($currentRole,'Votre profil est créé, vous pouvez vous connecter.');
 		}
+	}
+	
+	public function userUpdateAsk($currentRole, $currentDate){
+		require_once('application/models/UserModel.php');
+		$userModel = new UserModel();
+		$users = $userModel->getAllUsersMore();
+		
+		require_once('application/views/site/UserUpdateForm.php');
+	}
+	
+	public function userUpdate($id_user, $update, $currentRole, $currentDate){
+		require_once('application/models/UserModel.php');
+		$userModel = new UserModel();
+		
+		if ($update == "delete") {
+			$userModel->userDelete($id_user);
+		}
+		if ($update == "member") {
+			$userModel->userMember($id_user);
+		}
+		if ($update == "admin") {
+			$userModel->userAdmin($id_user);
+		}
+		
+		header('location: index.php?action=userUpdateAsk');
+		
 	}
 	
 	public function getUser($id_user){

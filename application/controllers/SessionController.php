@@ -152,6 +152,12 @@ class SessionController{
     	else if ($action == 'addressMod' && $role == 1){
     		return 1;
     	}
+    	else if ($action == 'userUpdateAsk' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'userUpdate' && $role == 1){
+    		return 1;
+    	}
     	else if ($action == 'eventShow' && $role <=3){
     		return 1;
     	}

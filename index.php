@@ -85,7 +85,8 @@ else if (!empty($_GET['action']) && $_GET['action']=='userAdd') {
     if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['password'])) {
         require_once('application/controllers/UserController.php');
         $userController = new UserController();
-        $userController->userAdd(htmlspecialchars($_POST['firstname']), htmlspecialchars($_POST['lastname']), htmlspecialchars($_POST['email']), htmlspecialchars($_POST['phone']), htmlspecialchars($_POST['password']), htmlspecialchars($_POST['id_grade']), $currentRole, $currentDate);  
+        $userController->userAdd(htmlspecialchars($_POST['firstname']), htmlspecialchars($_POST['lastname']), htmlspecialchars($_POST['email']), htmlspecialchars($_POST['phone']), htmlspecialchars($_POST['password']), intval(htmlspecialchars($_POST['id_grade'])), $currentRole, $currentDate);  
+    
     }
     //else we redirect the new user to the registration page with a message
     else{
@@ -93,6 +94,46 @@ else if (!empty($_GET['action']) && $_GET['action']=='userAdd') {
         $userController = new UserController();
         $userController->userAddAsk($currentRole, $currentDate, 'Vous n\'avez pas rempli correctement le formulaire');
     }
+}
+
+
+//------------------------------------------------------------------------
+
+
+
+
+//asking for updating a new user
+else if (!empty($_GET['action']) && $_GET['action']=='userUpdateAsk') {
+	
+	if ($sessionController->authorization ('userUpdateAsk', $currentRole)){
+		require_once('application/controllers/UserController.php');
+	    $userController = new UserController();
+	    $userController->userUpdateAsk($currentRole, $currentDate);
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+    
+}
+
+
+//------------------------------------------------------------------------
+
+
+
+// updating a user
+else if (!empty($_GET['action']) && $_GET['action']=='userUpdate') {
+
+
+	if ($sessionController->authorization ('userUpdate', $currentRole)){
+		require_once('application/controllers/UserController.php');
+		$userController = new UserController();
+		$userController->userUpdate(intval(htmlspecialchars($_POST['id'])), htmlspecialchars($_POST['update']), $currentRole, $currentDate);
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+
 }
 
 

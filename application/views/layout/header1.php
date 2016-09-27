@@ -56,6 +56,9 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="index.php?action=cityAddAsk">Ajouter/Modifier une ville</a></li>
                                 <li><a href="index.php?action=addressAddAsk">Ajouter/Modifier une adresse</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="index.php?action=userUpdateAsk">Utilisateurs</a></li>
+                              
                               </ul>
                             </li>
                           </ul>

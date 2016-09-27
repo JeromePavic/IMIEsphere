@@ -2,11 +2,11 @@
                     <aside class="bloc">
 
                         <div class="post-recents">
-                            <h3><?php echo $_COOKIE['userInfos']['firstname'].' '.$_COOKIE['userInfos']['firstname']; ?></h3>
+                            <h3><?php echo $_COOKIE['userInfos']['firstname'].' '.$_COOKIE['userInfos']['lastname']; ?></h3>
                         </div>
 
                         <div class="categories liste">
-                            <h3>Votre profil</h3>
+                            <h3>Mon profil</h3>
                             <div class="list-group">
                                 <a href="#" class="list-group-item list-perso"><?php echo 'email : '.$_COOKIE['userInfos']['email']; ?> </a>
                                 <a href="#" class="list-group-item list-perso "><?php echo 'téléphone : '.$_COOKIE['userInfos']['phone']; ?> </a>
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="commentaires-recents liste">
-                            <h3>Vos prochains événements</h3>
+                            <h3>Mes prochains événements</h3>
                             <div class="list-group">
 
                             	<?php foreach ($_COOKIE['userEvents'] as $event) : ?>
