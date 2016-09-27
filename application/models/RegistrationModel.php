@@ -6,6 +6,15 @@ class RegistrationModel {
 		require_once('application/models/DbConnection.php');
 		$db = Db::getInstance();
 		
+		echo '____________________________________________';
+		var_dump($max_place);
+		var_dump($registration_start);
+		var_dump($registration_end);
+		var_dump($pre_registration);
+		var_dump($id_event);
+		
+
+		
 		$query=$db->prepare('INSERT INTO registration (max_place, registration_start, registration_end, pre_registration, id_event) VALUES (:max_place, :registration_start, :registration_end, :pre_registration, :id_event)');
 		$query->execute(array('max_place'=>$max_place, 'registration_start'=>$registration_start, 'registration_end'=>$registration_end, 'pre_registration'=> $pre_registration, 'id_event'=>$id_event));
 		

@@ -10,6 +10,7 @@ class UserRegistrationModel {
 		$query = $db->query('SELECT COUNT(*) FROM user_registration
 						        WHERE user_registration.id_registration = '.$id_registration.'');
 		$number = $query->fetch();
+		
 		return $number;
 	}
 	

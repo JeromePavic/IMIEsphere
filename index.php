@@ -188,7 +188,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 	        
 	            require_once('application/controllers/RegistrationController.php');
 	            $registrationController = new RegistrationController();
-	            $registrationController->registrationAdd(htmlspecialchars(htmlspecialchars($_POST['max_place'])), $registration_start, $registration_end, $pre_registration, $id_event, htmlspecialchars($_POST['priceNa']), htmlspecialchars($_POST['priceAd']), htmlspecialchars($_POST['priceMb']));
+	            $registrationController->registrationAdd((htmlspecialchars($_POST['max_place'])), $registration_start, $registration_end, $pre_registration, $id_event, htmlspecialchars($_POST['priceNa']), htmlspecialchars($_POST['priceAd']), htmlspecialchars($_POST['priceMb']));
 	        }
 	        else{
 	            $eventController->eventAddAsk($currentRole, $currentDate, 'La date de début doit être antérieure à la date de fin');

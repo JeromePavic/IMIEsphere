@@ -45,7 +45,7 @@ class SessionController{
     }
 
 
-    public function connection($currentRole, $email,$password) {
+    public function connection($currentRole, $email, $password) {
 
         //first we get the table of all users
         require_once('application/models/UserModel.php');

@@ -16,7 +16,7 @@
                             </header>
                             <section><?php echo $event['event_description'] ?></section>
                             <footer>
-                                <p>places disponibles : <span id="availability">0</span></p>
+                                <p>places disponibles : <span id="availability"><?php echo $availability; ?></span></p>
                                 <p>prix : <?php echo $registration['price'].'€'; ?></p>
                             </footer>
                             

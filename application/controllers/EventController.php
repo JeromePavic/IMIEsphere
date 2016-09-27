@@ -25,14 +25,12 @@ class EventController{
 			$registration = $registrationModel->getRegistrationLess($id_event, $currentRole);
 			$registration['price']=0;
 		}
-
 		
 		require_once('application/models/UserRegistrationModel.php');
 		$userRegistrationModel = new UserRegistrationModel();
 		$userRegistration = $userRegistrationModel->getNbUserRegistration($registration['id_registration']);
 		
-		$availability = $registration['max_place'] - $userRegistration[0];
-		
+		$availability = intval($registration['max_place']) - intval($userRegistration[0]);
 		
 		if (empty($event) && empty($registration) && empty($userRegistration)) {
 			echo "problème de connexion à la base";
