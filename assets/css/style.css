@@ -1,0 +1,37 @@
+.main{
+	background-color: #E0E0E0;
+	text-align: justify;
+}
+.main div{
+	padding: 10px;
+}
+.bloc {
+    margin-top: 30px;
+}
+
+    .bloc .titre {
+        border: 1px solid #e1e1e1;
+        border-left: 5px solid #ee3124;
+        padding: 10px;
+    }
+
+    .bloc h2 {
+        margin: 0;
+        font-size: 1.4em;
+    }
+
+.sous-bloc {
+    border: 1px solid #e1e1e1;
+    border-top: none;
+    padding: 10px;
+}
+
+.sous-bloc-image {
+    border: 1px solid #e1e1e1;
+    border-top: none;
+    padding-top: 10px;
+}
+
+.sous-bloc-image-description {
+    padding: 10px;
+}

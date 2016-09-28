@@ -3,7 +3,7 @@
 
 
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-8 bloc">
                 
                 <div class="titre"><h2>Evenements</h2></div>
              
