@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
         
-        <link rel="stylesheet" href="assets/css/test.css">
+        <link rel="stylesheet" href="assets/css/style.css">
           
     </head>
     <body>
@@ -33,31 +33,35 @@
         
             <header class="row">
             
-                <nav class="navbar navbar-inverse navbar-default">
-                      <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                          </button>
-                          <a class="navbar-brand" href="#">IMIEsphere</a>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                          <ul class="nav navbar-nav">
+            
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+			      <div class="container">
+			        <div class="navbar-header">
+			          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			          </button>
+			          <a class="navbar-brand" href="index.php">IMIEsphere</a>
+			        </div>
+			        <div id="navbar" class="navbar-collapse collapse">
+			          <ul class="nav navbar-nav">
                           	<li><a href="index.php?action=calendar">Calendrier</a></li>
-                          </ul>
-                          <ul class="nav navbar-nav navbar-right">
+                       </ul>
+			          <ul class="nav navbar-nav navbar-right">
                           	<?php if (isset($_SESSION['id_user'])) : ?>
 	                          	<li><?php echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?></li>
-	                            <li><a href="index.php?action=connection">déconnexion</a></li>
+	                            <li><a href="index.php?action=connection">Déconnexion</a></li>
                             <?php else : ?>
-	                            <li><a href="index.php?action=connection">connexion</a></li>
+	                            <li><a href="index.php?action=connection">Connexion</a></li>
                             <?php endif; ?>
                           </ul>
-                        </div><!-- /.navbar-collapse -->
-                      </div><!-- /.container-fluid -->
-                </nav>
+			        </div>
+			      </div>
+			    </nav>
+            
+
 
             
             </header>
