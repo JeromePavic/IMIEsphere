@@ -73,19 +73,19 @@ CREATE TABLE user(
 
 INSERT INTO user VALUES 
 
-(1,NULL,'dereck','daniel','daniel.dereck@gmail.com','0658631306','bonjoir',1,3),
-(2,NULL,'delphine','bourdelle','delphine.bourdelle@hotmail.fr','0625586726','bonjoir',1,3),
-(3,NULL,'emeline','hourmand','shiro-x3@hotmail.fr','0619601483','bonjoir',1,3),
-(4,NULL,'maxime','theard','maxime.theard@gmail.com','0643975419','salut',1,3),
-(5,NULL,'maxime','gabriel','gabriel.maxime@gmail.com','0620145842','coucou',1,3),
-(6,NULL,'jerome','alincourt','jerome.alincourt@gmail.com','0659569508','blouge',1,3),
-(7,NULL,'jerome','pavic','jeromepavic@gmail.com','0634908636','bonjoir',1,1),
-(8,NULL,'boris','drouin','boris.drouin@gmail.com','0663445401','salut',1,2),
-(9,NULL,'antoine','liegard','@gmail.com','0299360990','Ar042Px _xXx_ b',1,3),
-(10,NULL,'fabian','inial','fabian.inial@gmail.com','0684660729','heisenberg',1,3),
-(11,NULL,'kevin','henkes','kevhenkes@gmail.com','0762762256','password',1,2),
-(12,NULL,'antoine','cronier','antoinecronier@github.com','0606060606','pwDfmlmp65DG',NULL,1),
-(13,NULL,'jeje','jeje','admin@imie.com','0658631306','123',1,1)
+(1,NULL,'dereck','daniel','danieleck@mail.com','0658867306','bonjoir',1,3),
+(2,NULL,'delpine','bodelle','delphiourdelle@mail.fr','0625586726','bonjoir',1,3),
+(3,NULL,'emine','homand','shiro3@mail.fr','061451483','bonjoir',1,3),
+(4,NULL,'maxime','therd','maximeard@mail.com','0643921119','salut',1,3),
+(5,NULL,'maxime','gaiel','gabr.maxime@mail.com','0611145842','coucou',1,3),
+(6,NULL,'jere','alcourt','jerome.alt@mail.com','0659999998','blouge',1,3),
+(7,NULL,'jeme','pac','jeromic@mail.com','0634905446','bonjoir',1,1),
+(8,NULL,'bois','droin','boris.drouin@mail.com','0644455401','salut',1,2),
+(9,NULL,'antne','liard','@mail.com','0264644990','Ar042Px _xXx_ b',1,3),
+(10,NULL,'faban','inial','fabian.inial@gmail.com','0684660729','heisenberg',1,3),
+(11,NULL,'kevn','henkes','kevhenkes@gmail.com','07626444256','password',1,2),
+(12,NULL,'antne','cronier','antoinecronier@github.com','0606060606','pwDfmlmp65DG',NULL,1),
+(13,NULL,'jeje','jeje','admin@imie.com','0658565606','123',1,1)
 ;
 
 
