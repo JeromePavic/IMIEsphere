@@ -58,7 +58,8 @@
                                 <li><a href="index.php?action=addressAddAsk">Ajouter/Modifier une adresse</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="index.php?action=userUpdateAsk">Utilisateurs</a></li>
-                              
+                              	<li role="separator" class="divider"></li>
+                                <li><a href="index.php?action=eventAdmin">Evénements</a></li>
                               </ul>
                             </li>
                           </ul>

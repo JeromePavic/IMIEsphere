@@ -91,4 +91,18 @@ class UserModel {
     	
     	return $query;
     }
+    
+    public function getUserEvent($id_event){
+    	require_once('application/models/DbConnection.php');
+    	$db = Db::getInstance();
+    	 
+    	$query = $db->query('SELECT user.id_user, user.firstname, user.lastname, user.email, grade.grade_name, grade.promotion, event.event_name FROM grade
+    							INNER JOIN user ON grade.id_grade = user.id_grade
+    							INNER JOIN user_registration ON user.id_user = user_registration.id_user
+    							INNER JOIN registration ON user_registration.id_registration = user_registration.id_registration 
+    							INNER JOIN event ON registration.id_event = event.id_event WHERE registration.id_event ='.$id_event.'');
+    	$query = $query->fetchAll();
+    	return $query;
+    	
+    }
 }

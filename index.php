@@ -167,7 +167,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 				//then we convert dates to right format
 	        	$event_start = $dateController->dateConvert($_POST['date_start'], $_POST['time_start']);
 	        	$event_end = $dateController->dateConvert($_POST['date_end'], $_POST['time_end']);
-	        	
+
 	            $id_event = $eventController->eventAdd(htmlspecialchars($_POST['event_name']), htmlspecialchars($_POST['event_description']), $event_start, $event_end, htmlspecialchars($_POST['id_address']), htmlspecialchars($_POST['id_type_event']), $currentRole, $currentDate); 
 	        
 	            //then we add the registration
@@ -182,7 +182,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 	            else {
 	            	// if dates are wrong we just set the end date to the event start date and we convert dates to right format
 	            	$registration_start = $dateController->dateConvert($_POST['reg_date_start'], $_POST['reg_time_start']);
-	            	$registration_end = event_start;
+	            	$registration_end = $event_start;
 	            	$pre_registration = $dateController->dateConvert($_POST['pReg_date_start'], $_POST['pReg_time_start']);
 	            }
 	        
@@ -253,6 +253,49 @@ else if (!empty($_GET['action']) && $_GET['action']=='userRegistration') {
 		echo 'Vous vous êtes perdu?';
 	}
 }
+
+
+
+
+//asking for users registered to an event
+else if (!empty($_GET['action']) && $_GET['action']=='eventAdmin') {
+
+	if ($sessionController->authorization ('eventAdmin', $currentRole)){
+		require_once('application/controllers/EventController.php');
+		$eventController = new EventController();
+		$eventController->eventAdmin($currentRole, $currentDate);
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+
+}
+
+
+
+
+
+//------------------------------------------------------------------------
+
+
+
+// updating a user
+else if (!empty($_GET['action']) && $_GET['action']=='eventUser') {
+
+
+	if ($sessionController->authorization ('eventUser', $currentRole)){
+		require_once('application/controllers/EventController.php');
+		$eventController = new EventController();
+		$eventController->eventUser(intval(htmlspecialchars($_POST['id'])), $currentRole, $currentDate);
+	}
+	else{
+		echo 'Vous vous êtes perdu?';
+	}
+
+}
+
+
+//------------------------------------------------------------------------
 
 
 

@@ -64,4 +64,21 @@ class EventController{
 		return $id_event;
 	}
 	
+	public function eventAdmin ($currentRole, $currentDate){
+		require_once('application/models/EventModel.php');
+		$eventModel = new EventModel();
+		$events = $eventModel->getAllEvents($currentDate);
+		
+		require_once('application/views/site/EventAdmin.php');
+		
+	}
+	
+	public function eventUser ($id_event, $currentRole, $currentDate){
+		require_once('application/models/UserModel.php');
+		$userModel = new UserModel();
+		$users = $userModel->getUserEvent($id_event);
+		
+		require_once('application/views/site/EventUsers.php');
+	}
+	
 }

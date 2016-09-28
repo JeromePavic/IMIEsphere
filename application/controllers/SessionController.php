@@ -158,6 +158,12 @@ class SessionController{
     	else if ($action == 'userUpdate' && $role == 1){
     		return 1;
     	}
+    	else if ($action == 'eventUser' && $role == 1){
+    		return 1;
+    	}
+    	else if ($action == 'eventAdmin' && $role == 1){
+    		return 1;
+    	}
     	else if ($action == 'eventShow' && $role <=3){
     		return 1;
     	}
