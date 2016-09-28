@@ -36,8 +36,6 @@ class EventModel {
         $query = $db->query('SELECT id_event FROM event ORDER BY event.id_event DESC LIMIT 1');
         $event = $query->fetch();
         $id_event = intval($event[0]);
-		
-        var_dump($id_event);
         
         $query=$db->prepare('INSERT INTO event_type_event (id_event, id_type_event) VALUES (:id_event, :id_type_event)');
         $query->execute(array('id_event'=>$id_event, 'id_type_event'=>$id_type_event));

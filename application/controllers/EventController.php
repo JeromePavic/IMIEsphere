@@ -74,6 +74,11 @@ class EventController{
 	}
 	
 	public function eventUser ($id_event, $currentRole, $currentDate){
+		
+		require_once('application/models/EventModel.php');
+		$eventModel = new EventModel();
+		$event = $eventModel->getEvent($id_event);
+		
 		require_once('application/models/UserModel.php');
 		$userModel = new UserModel();
 		$users = $userModel->getUserEvent($id_event);

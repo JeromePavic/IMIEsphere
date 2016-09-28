@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-8">
                 
-                	<div class="titre"><h2></h2></div>
+                	<div class="titre"><h3><?php echo $event['event_name'].' le '.$event['event_start'].', '.$event['address_name'].' '.$event['city_name']; ?></h3></div>
              			
 			             <div class="table-responsive">
 				             <table class="table">
