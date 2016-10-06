@@ -36,8 +36,6 @@ class UserModel {
 
     public function userAdd($firstname, $lastname, $email, $phone, $password, $id_grade, $id_role) {
     	
-    	var_dump($id_grade);
-    	var_dump($id_role);
     	
         require_once('application/models/DbConnection.php');
         $db = Db::getInstance();

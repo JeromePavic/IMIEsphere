@@ -1,6 +1,10 @@
 <?php
 
 
+//__a lot of cleaning to do here__
+
+
+
 //on load of a new page we check if a session is on...
 
 require_once('application/controllers/SessionController.php');
@@ -21,6 +25,8 @@ if ($currentRole < 3) {
 
 }
 
+
+
 //------------------------------------------------------------------------
 //then we check wich action is riquired...
 //...and if the type of user (currentRole) is authorised to get the page
@@ -28,6 +34,7 @@ if ($currentRole < 3) {
 
 
 //consulting the calendar.
+
 if (!empty($_GET['action']) && $_GET['action'] == 'calendar') {
 	if ($sessionController->authorization ('calendar', $currentRole)){
 	
@@ -43,6 +50,7 @@ if (!empty($_GET['action']) && $_GET['action'] == 'calendar') {
 
 
 //connecting.
+
 else if (!empty($_GET['action']) && $_GET['action'] == 'connection'){
     //if a session is on we call the disconnection function
     if($sessionOn==1){
@@ -73,6 +81,7 @@ else if (!empty($_GET['action']) && $_GET['action'] == 'connection'){
 
 
 //asking for registration (adding a user)
+
 else if (!empty($_GET['action']) && $_GET['action']=='userAddAsk') {
     require_once('application/controllers/UserController.php');
     $userController = new UserController();
@@ -80,6 +89,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='userAddAsk') {
 }
 
 //adding a new user
+
 else if (!empty($_GET['action']) && $_GET['action']=='userAdd') {
     //if required fiels are ok, we add the new user
     if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['password'])) {
@@ -102,7 +112,8 @@ else if (!empty($_GET['action']) && $_GET['action']=='userAdd') {
 
 
 
-//asking for updating a new user
+//asking for updating a user
+
 else if (!empty($_GET['action']) && $_GET['action']=='userUpdateAsk') {
 	
 	if ($sessionController->authorization ('userUpdateAsk', $currentRole)){
@@ -122,6 +133,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='userUpdateAsk') {
 
 
 // updating a user
+
 else if (!empty($_GET['action']) && $_GET['action']=='userUpdate') {
 
 
@@ -140,7 +152,9 @@ else if (!empty($_GET['action']) && $_GET['action']=='userUpdate') {
 //------------------------------------------------------------------------
 
 
+
 //asking for adding a new event
+
 else if (!empty($_GET['action']) && $_GET['action']=='eventAddAsk') {
 	
 	if ($sessionController->authorization ('eventAddAsk', $currentRole)){
@@ -151,6 +165,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAddAsk') {
 }
 
 //adding a new event
+
 else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 	
 	if ($sessionController->authorization ('eventAdd', $currentRole)){
@@ -214,6 +229,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdd') {
 
 
 //consulting an event
+
 else if (!empty($_GET['action']) && $_GET['action']=='eventShow') {
 
 	if ($sessionController->authorization ('eventShow', $currentRole)){
@@ -238,6 +254,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventShow') {
 
 
 //registering to an event
+
 else if (!empty($_GET['action']) && $_GET['action']=='userRegistration') {
 
 	if ($sessionController->authorization ('eventRegistration', $currentRole)){
@@ -257,7 +274,8 @@ else if (!empty($_GET['action']) && $_GET['action']=='userRegistration') {
 
 
 
-//asking for users registered to an event
+//asking for admin part of events
+
 else if (!empty($_GET['action']) && $_GET['action']=='eventAdmin') {
 
 	if ($sessionController->authorization ('eventAdmin', $currentRole)){
@@ -279,7 +297,8 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventAdmin') {
 
 
 
-// updating a user
+// asking for the list of registered users for an event
+
 else if (!empty($_GET['action']) && $_GET['action']=='eventUser') {
 
 
@@ -300,10 +319,9 @@ else if (!empty($_GET['action']) && $_GET['action']=='eventUser') {
 
 
 
-//------------------------------------------------------------------------
-
 
 //asking for adding a new type of event
+
 else if (!empty($_GET['action']) && $_GET['action']=='typeEventAddAsk') {
 
 	if (!empty($_POST['id_type_event'])){
@@ -325,16 +343,17 @@ else if (!empty($_GET['action']) && $_GET['action']=='typeEventAddAsk') {
 }
 
 //adding a new type of event
+
 else if (!empty($_GET['action']) && $_GET['action']=='typeEventAdd') {
 	
 	if ($sessionController->authorization ('typeEventAdd', $currentRole)){
-		//if required fiels are ok, we add the new user
+		//if required fiels are ok, ...
 		if (!empty($_POST['type_event_name'])) {
 			require_once('application/controllers/TypeEventController.php');
 			$typeEventController = new TypeEventController();
 			$typeEventController->typeEventAdd(htmlspecialchars($_POST['type_event_name']), htmlspecialchars($_POST['type_event_description']), $currentRole, $currentDate);
 		}
-		//else we redirect the new user to the registration page with a message
+		//else we redirect the user 
 		else{
 			require_once('application/controllers/TypeEventController.php');
 			$typeEventController = new TypeEventController();
@@ -349,17 +368,18 @@ else if (!empty($_GET['action']) && $_GET['action']=='typeEventAdd') {
 
 
 //modifying a type of event
+
 else if (!empty($_GET['action']) && $_GET['action']=='typeEventMod') {
 
 	if ($sessionController->authorization ('typeEventMod', $currentRole)){
 
-		//if required fiels are ok, we add the new user
+		//if required fiels are ok, ...
 		if (!empty($_POST['type_event_name']) && ($_POST['id_type_event'])) {
 			require_once('application/controllers/TypeEventController.php');
 			$typeEventController = new TypeEventController();
 			$typeEventController->typeEventMod(intval(htmlspecialchars($_POST['id_type_event'])), htmlspecialchars($_POST['type_event_name']), htmlspecialchars($_POST['type_event_description']), $currentRole, $currentDate);
 		}
-		//else we redirect the new user to the event type page with a message
+		//else we redirect the user 
 		else{
 			require_once('application/controllers/TypeEventController.php');
 			$typeEventController = new TypeEventController();
@@ -378,6 +398,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='typeEventMod') {
 
 
 //asking for adding a new grade
+
 else if (!empty($_GET['action']) && $_GET['action']=='gradeAddAsk') {
 
 	if (!empty($_POST['id_grade'])){
@@ -398,17 +419,18 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeAddAsk') {
 }
 
 //adding a new grade
+
 else if (!empty($_GET['action']) && $_GET['action']=='gradeAdd') {
 
 
 	if ($sessionController->authorization ('gradeAdd', $currentRole)){
-		//if required fiels are ok, we add the new user
+		//if required fiels are ok, ...
 		if (!empty($_POST['grade_name']) && !empty($_POST['promotion'])) {
 			require_once('application/controllers/GradeController.php');
 			$gradeController = new GradeController();
 			$gradeController->gradeAdd(htmlspecialchars($_POST['grade_name']), htmlspecialchars($_POST['promotion']), $currentRole, $currentDate);
 		}
-		//else we redirect the new user to the grade page with a message
+		//else we redirect the user 
 		else{
 			require_once('application/controllers/GradeController.php');
 			$gradeController = new GradeController();
@@ -425,11 +447,12 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeAdd') {
 
 
 //modifying a grade
+
 else if (!empty($_GET['action']) && $_GET['action']=='gradeMod') {
 
 
 	if ($sessionController->authorization ('gradeMod', $currentRole)){
-		//if required fiels are ok, we add the new user
+		//if required fiels are ok, ...
 		if (!empty($_POST['grade_name']) && !empty($_POST['promotion']) && ($_POST['id_grade'])) {
 			require_once('application/controllers/GradeController.php');
 			$gradeController = new GradeController();
@@ -454,6 +477,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='gradeMod') {
 
 
 //asking for adding a new city
+
 else if (!empty($_GET['action']) && $_GET['action']=='cityAddAsk') {
 	
 	if (!empty($_POST['id_city'])){
@@ -473,6 +497,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='cityAddAsk') {
 }
 
 //adding a new city
+
 else if (!empty($_GET['action']) && $_GET['action']=='cityAdd') {
 
 	if ($sessionController->authorization ('cityAdd', $currentRole)){
@@ -498,6 +523,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='cityAdd') {
 
 
 //modifying a city
+
 else if (!empty($_GET['action']) && $_GET['action']=='cityMod') {
 
 	if ($sessionController->authorization ('cityMod', $currentRole)){
@@ -528,6 +554,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='cityMod') {
 
 
 //asking for adding a new address
+
 else if (!empty($_GET['action']) && $_GET['action']=='addressAddAsk') {
 	
 	if (!empty($_POST['id_address'])){
@@ -547,6 +574,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='addressAddAsk') {
 }
 
 //adding a new address
+
 else if (!empty($_GET['action']) && $_GET['action']=='addressAdd') {
 
 	if ($sessionController->authorization ('addressAdd', $currentRole)){
@@ -573,6 +601,7 @@ else if (!empty($_GET['action']) && $_GET['action']=='addressAdd') {
 
 
 //modifying an address
+
 else if (!empty($_GET['action']) && $_GET['action']=='addressMod') {
 
 	if ($sessionController->authorization ('addressMod', $currentRole)){

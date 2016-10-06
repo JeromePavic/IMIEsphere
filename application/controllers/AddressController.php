@@ -18,6 +18,7 @@ class AddressController{
 		require_once('application/views/site/AddressAddForm.php');
 	}
 	
+	
 	public function addressAdd($address_name, $street, $street_number, $building, $id_city, $currentRole, $currentDate){
 	
 		require_once('application/models/AddressModel.php');
@@ -31,6 +32,7 @@ class AddressController{
 			header('location: index.php?action=calendar');
 		}
 	}
+	
 	
 	public function addressMod($idaddress, $address_name, $street, $street_number, $building, $id_city, $currentRole, $currentDate){
 	

@@ -47,10 +47,6 @@ class TypeEventModel {
     }
     
     public function typeEventMod($id_type_event, $type_event_name, $type_event_description) {
-    
-    	var_dump($id_type_event);
-    	var_dump($type_event_name);
-    	var_dump($type_event_description);
     	
     	
     	require_once('application/models/DbConnection.php');
