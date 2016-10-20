@@ -111,6 +111,35 @@ class SessionController{
 
     
     public function authorization ($action, $role){
+    	
+   		return((($role == 1) &&
+   				($action == 'eventAddAsk') ||
+   				($action == 'eventAdd') ||
+   				($action == 'typeEventAddAsk') ||
+   				($action == 'typeEventAdd') ||
+   				($action == 'typeEventMod') ||
+   				($action == 'gradeAddAsk') ||
+   				($action == 'gradeAdd') ||
+   				($action == 'gradeMod') ||
+   				($action == 'cityAddAsk') ||
+   				($action == 'cityAdd') ||
+   				($action == 'cityMod') ||
+   				($action == 'addressAddAsk') ||
+   				($action == 'addressAdd') ||
+   				($action == 'addressMod') ||
+   				($action == 'userUpdateAsk') ||
+   				($action == 'userUpdate') ||
+   				($action == 'eventUser') ||
+   				($action == 'eventAdmin')) ||
+   				(($role <=3) &&
+   				($action == 'eventShow') ||
+   				($action == 'eventRegistration') ||
+   				($action == 'calendar'))
+   				);
+    	
+    	
+    }
+    public function authorization_backup ($action, $role){
     	if ($action == 'eventAddAsk' && $role == 1){
     		return 1;
     	}

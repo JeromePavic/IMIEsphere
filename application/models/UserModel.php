@@ -95,9 +95,9 @@ class UserModel {
     	$db = Db::getInstance();
     	 
     	$query = $db->query('SELECT user.id_user, user.firstname, user.lastname, user.email, grade.grade_name, grade.promotion, event.event_name FROM event
-    							LEFT JOIN registration ON event.id_event = registration.id_event
-    							LEFT JOIN user_registration ON registration.id_registration = user_registration.id_registration
-    							LEFT JOIN user ON user_registration.id_user = user.id_user
+    							INNER JOIN registration ON event.id_event = registration.id_event
+    							INNER JOIN user_registration ON registration.id_registration = user_registration.id_registration
+    							INNER JOIN user ON user_registration.id_user = user.id_user
     							INNER JOIN grade ON	user.id_grade = grade.id_grade						
     							WHERE registration.id_event ='.$id_event.'');
     								
