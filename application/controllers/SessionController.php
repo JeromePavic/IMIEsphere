@@ -133,7 +133,7 @@ class SessionController{
    				($action == 'eventAdmin')) ||
    				(($role <=3) &&
    				($action == 'eventShow') ||
-   				($action == 'eventRegistration') ||
+   				($action == 'userRegistration') ||
    				($action == 'calendar')) ||
    				($action == 'connection') ||
    				($action == 'userAddAsk') ||

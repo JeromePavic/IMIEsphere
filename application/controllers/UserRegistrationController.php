@@ -29,11 +29,11 @@ class UserRegistrationController{
 	
 	}
 	
-	public function getUserRegistration ($id_user){
+	public function getUserRegistration ($id_user, $currentDate){
 		
 		require_once('application/models/UserRegistrationModel.php');
 		$userRegistrationModel = new UserRegistrationModel();
-		$userEvents = $userRegistrationModel->getUserRegistration($id_user);
+		$userEvents = $userRegistrationModel->getUserRegistration($id_user, $currentDate);
 		
 		return $userEvents;
 	}

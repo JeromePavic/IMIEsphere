@@ -14,13 +14,15 @@ $currentDate = $sessionController->setDate();
 $currentRole = $sessionController->checkRole();
 
 if ($currentRole < 3) {
+	//we get the user infos..
 	require_once('application/controllers/UserController.php');
 	$userController = new UserController();
 	$_COOKIE['userInfos'] = $userController->getUser(intval(htmlspecialchars($_SESSION['id_user'])));
 	
+	//we get the user registrations (for the side part)..
 	require_once('application/controllers/UserRegistrationController.php');
 	$userRegistrationController = new UserRegistrationController();
-	$_COOKIE['userEvents'] = $userRegistrationController->getUserRegistration(intval(htmlspecialchars($_SESSION['id_user'])));
+	$_COOKIE['userEvents'] = $userRegistrationController->getUserRegistration(intval(htmlspecialchars($_SESSION['id_user'])), $currentDate);
 	
 
 }
@@ -109,41 +111,7 @@ if (!empty($_GET['action']) && ($sessionController->authorization (htmlspecialch
 			if (!empty($_POST['event_name']) && !empty($_POST['date_start']) && !empty($_POST['time_start']) && !empty($_POST['reg_date_start'])&& !empty($_POST['id_address'])) {
 				require_once('application/controllers/EventController.php');
 				$eventController = new EventController();
-				 
-				//here we control if start datetime is before end datetime
-				require_once('application/controllers/DateController.php');
-				$dateController = new DateController();
-			
-				if($dateController->rightDate(htmlspecialchars($_POST['date_start']), htmlspecialchars($_POST['date_end']), htmlspecialchars($_POST['time_start']), htmlspecialchars($_POST['time_end']))) {
-					//then we convert dates to right format
-					$event_start = $dateController->dateConvert($_POST['date_start'], $_POST['time_start']);
-					$event_end = $dateController->dateConvert($_POST['date_end'], $_POST['time_end']);
-			
-					$id_event = $eventController->eventAdd(htmlspecialchars($_POST['event_name']), htmlspecialchars($_POST['event_description']), $event_start, $event_end, htmlspecialchars($_POST['id_address']), htmlspecialchars($_POST['id_type_event']), $currentRole, $currentDate);
-					 
-					//then we add the registration
-					 
-					//here we control if start datetime is before end datetime
-					if($dateController->rightDate(htmlspecialchars($_POST['reg_date_start']), htmlspecialchars($_POST['reg_date_end']), htmlspecialchars($_POST['reg_time_start']), htmlspecialchars($_POST['reg_time_end']))) {
-						//then we convert dates to right format
-						$registration_start = $dateController->dateConvert($_POST['reg_date_start'], $_POST['reg_time_start']);
-						$registration_end = $dateController->dateConvert($_POST['reg_date_end'], $_POST['reg_time_end']);
-						$pre_registration = $dateController->dateConvert($_POST['pReg_date_start'], $_POST['pReg_time_start']);
-					}
-					else {
-						// if dates are wrong we just set the end date to the event start date and we convert dates to right format
-						$registration_start = $dateController->dateConvert($_POST['reg_date_start'], $_POST['reg_time_start']);
-						$registration_end = $event_start;
-						$pre_registration = $dateController->dateConvert($_POST['pReg_date_start'], $_POST['pReg_time_start']);
-					}
-					 
-					require_once('application/controllers/RegistrationController.php');
-					$registrationController = new RegistrationController();
-					$registrationController->registrationAdd((htmlspecialchars($_POST['max_place'])), $registration_start, $registration_end, $pre_registration, $id_event, htmlspecialchars($_POST['priceNa']), htmlspecialchars($_POST['priceAd']), htmlspecialchars($_POST['priceMb']));
-				}
-				else{
-					$eventController->eventAddAsk($currentRole, $currentDate, 'La date de début doit être antérieure à la date de fin');
-				}
+				$eventController->eventAdd(htmlspecialchars($_POST['event_name']), htmlspecialchars($_POST['event_description']), htmlspecialchars($_POST['date_start']), htmlspecialchars($_POST['date_end']), htmlspecialchars($_POST['time_start']), htmlspecialchars($_POST['time_end']), htmlspecialchars($_POST['id_address']), htmlspecialchars($_POST['id_type_event']),(htmlspecialchars($_POST['max_place'])), htmlspecialchars($_POST['reg_date_start']), htmlspecialchars($_POST['reg_date_end']), htmlspecialchars($_POST['reg_time_start']), htmlspecialchars($_POST['reg_time_end']), htmlspecialchars($_POST['pReg_date_start']), htmlspecialchars($_POST['pReg_time_start']), $id_event, htmlspecialchars($_POST['priceNa']), htmlspecialchars($_POST['priceAd']), htmlspecialchars($_POST['priceMb']), $currentRole, $currentDate);
 			}
 			//else we redirect the new user to the event add page page with a message
 			else{
