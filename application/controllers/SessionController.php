@@ -134,11 +134,15 @@ class SessionController{
    				(($role <=3) &&
    				($action == 'eventShow') ||
    				($action == 'eventRegistration') ||
-   				($action == 'calendar'))
+   				($action == 'calendar')) ||
+   				($action == 'connection') ||
+   				($action == 'userAddAsk') ||
+   				($action == 'userAdd') ||
+   				($action == '')
    				);
-    	
-    	
+	
     }
+    
     public function authorization_backup ($action, $role){
     	if ($action == 'eventAddAsk' && $role == 1){
     		return 1;
