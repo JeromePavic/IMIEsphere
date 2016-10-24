@@ -337,5 +337,3 @@ else {
 	$siteController->welcome($currentRole);
 }
 
-
-?>
